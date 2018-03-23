@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyDypzjZ3yd_CkVgjtgtt6s2_YeQPEbOkTI',
+    authDomain: 'tik-webapp.firebaseapp.com',
+    databaseURL: 'https://tik-webapp.firebaseio.com',
+    projectId: 'tik-webapp',
+    storageBucket: 'tik-webapp.appspot.com',
+    messagingSenderId: '473719203762'
+  }
 };
