@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container fxFlexFill (backdropClick)="toggleNav()">
+  <mat-sidenav [mode]="mode"
+               [opened]="navBarOpen">
+    <mat-nav-list>
+      <a *ngFor="let route of routes"
+         mat-list-item [routerLink]="route.route">
+        <tik-margin-icon [iconName]="route.icon"></tik-margin-icon> {{route.title}}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout="column">
+    <tik-toolbar (navToggle)="toggleNav()"></tik-toolbar>
+    <div fxFlex>
+      <router-outlet></router-outlet>
+    </div>
+    <footer fxLayout="column">
+      <hr fxFlexFill>
+      <p fxFlexAlign="center">Copyright © 2018 Guðlaug Guðjónsdóttir</p>
+    </footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

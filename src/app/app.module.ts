@@ -11,12 +11,15 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule, MatListModule, MatSidenavModule } from '@angular/material';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { MarginIconComponent } from './shared/margin-icon/margin-icon.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +31,7 @@ import { MatIconModule, MatListModule, MatSidenavModule } from '@angular/materia
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase)
 
   ],
