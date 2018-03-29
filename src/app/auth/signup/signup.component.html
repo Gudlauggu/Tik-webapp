@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="50">
+    <mat-card-header>
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="signUp()" [formGroup]="signUpForm" novalidate fxLayout="column">
+        <mat-form-field>
+          <input matInput
+                 placeholder="Email"
+                 formControlName="email">
+          <mat-error *ngIf="fcErr('email', 'required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="fcErr('email', 'email', ['required'])">
+            Email is invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput
+                 placeholder="Password"
+                 type="password"
+                 formControlName="password">
+          <mat-error *ngIf="fcErr('password', 'required')">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="fcErr('password', 'minlength', ['required'])">
+            Password needs to at least 6 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput
+                 placeholder="Repeat Password"
+                 type="password"
+                 formControlName="repeatPassword">
+          <mat-error *ngIf="fcErr('repeatPassword', 'required')">
+            Repeat Password is required
+          </mat-error>
+          <mat-error *ngIf="fcErr('repeatPassword', 'no-match', ['required'])">
+            Passwords don't match!
+          </mat-error>
+        </mat-form-field>
+        <button mat-button
+                color="accent"
+                type="submit"
+                [disabled]="signUpForm.invalid">
+          Sign Up
+        </button>
+        <button mat-button
+                color="primary"
+                type="button"
+                routerLink="/login">
+          Log In
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
