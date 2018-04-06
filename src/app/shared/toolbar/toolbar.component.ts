@@ -28,4 +28,11 @@ export class ToolbarComponent implements OnInit {
     this.navToggle.emit();
   }
 
+  logout() {
+    this.authService.logout()
+        .then(() => {
+          this.router.navigateByUrl('login');
+        });
+  }
+
 }

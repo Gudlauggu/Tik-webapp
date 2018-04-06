@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card fxFlex="80">
+    <mat-card-header>
+      <mat-card-title>{{user.username}}</mat-card-title>
+      <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="save()" [formGroup]="profileForm" novalidate fxLayout="column">
+        <mat-form-field>
+          <input matInput
+                 placeholder="Username"
+                 formControlName="username">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput
+                 placeholder="First Name"
+                 formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field fxFlex>
+        <input matInput
+               placeholder="Middle Name"
+               formControlName="middleName">
+      </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput
+                 placeholder="Last Name"
+                 formControlName="lastName">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="stretch">
+        <button mat-mini-fab
+                color="accent">
+
+        </button>
+          <p fxFlex
+             fxFlexOffset="10px">Change password</p>
+        <button mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="profileForm.invalid">
+          Save
+        </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

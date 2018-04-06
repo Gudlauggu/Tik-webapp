@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { AuthService } from '../shared/auth.service';
-import { User } from '../shared/user';
+import { User } from '../../user/shared/user';
 import { matchPassword } from '../shared/password-validator';
 
 @Component({
@@ -34,7 +34,7 @@ export class SignupComponent implements OnInit {
     const signUpModel = this.signUpForm.value as User;
     this.authService.signup(signUpModel)
         .then(user => {
-          this.router.navigateByUrl('albums')
+          this.router.navigateByUrl('/')
               .then(() => {
                 this.snack.open('You are Signed Up', '', {
                   duration: 3000

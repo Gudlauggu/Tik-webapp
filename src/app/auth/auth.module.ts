@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from './shared/auth.service';
 import { SignupComponent } from './signup/signup.component';
+import { ProfileComponent } from '../user/profile/profile.component';
 
 
 @NgModule({
