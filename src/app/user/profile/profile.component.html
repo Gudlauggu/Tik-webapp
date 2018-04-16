@@ -1,8 +1,17 @@
 <div fxLayout="row" fxLayoutAlign="center">
   <mat-card fxFlex="80">
     <mat-card-header>
-      <mat-card-title>{{user.username}}</mat-card-title>
-      <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+      <img
+        matTooltip="Change Image!"
+        [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
+        (@imageHover.done)="changePic($event)"
+        tikUpload
+        (hovering)="hovering($event)"
+        (dropped)="uploadNewImage($event)"
+        mat-card-avatar
+        [src]="img">
+      <mat-card-title>{{user?.username}}</mat-card-title>
+      <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <form (ngSubmit)="save()" [formGroup]="profileForm" novalidate fxLayout="column">
@@ -29,14 +38,14 @@
         <div fxLayout="row" fxLayoutAlign="stretch">
         <button mat-mini-fab
                 color="accent">
-
+          <mat-icon>lock</mat-icon>
         </button>
           <p fxFlex
              fxFlexOffset="10px">Change password</p>
         <button mat-raised-button
                 color="primary"
                 type="submit"
-                [disabled]="profileForm.invalid">
+                [disabled]="profileForm.invalid || unchanged()">
           Save
         </button>
         </div>

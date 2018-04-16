@@ -1,20 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/shared/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
+import { Subscription } from 'rxjs/Subscription';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'tik-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  animations: [trigger('imageHover', [
+    state('hoveringImage', style({
+      opacity: 0.3
+    })),
+    state('notHoveringImage', style({
+      opacity: 1
+    })),
+    transition('hoveringImage <=> notHoveringImage', animate('200ms ease-in'))
+  ])]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   profileForm: FormGroup;
   user: User;
+  userSub: Subscription;
+  isHovering: boolean;
+  img: string;
 
   constructor(private authService: AuthService,
               private userService: UserService,
@@ -29,10 +43,42 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
+
+  hovering(isHovering: boolean) {
+    this.isHovering = isHovering;
+  }
+
+  changePic(event) {
+    if (event.toState === 'hoveringImage') {
+      this.img = '../../../../assets/cloud_upload.svg';
+    } else {
+      this.img = '../../../../assets/mercy.png';
+    }
+    console.log('animation done', event);
+  }
+
+  uploadNewImage(fileList) {
+    console.log('filelist: ', fileList);
+
+  }
+
   ngOnInit() {
-    this.user = {username: 'Hret', email: 'hsdf@sfd.is', uid: '123'};
-    this.userService.getUser()
-      .subscribe(user => this.user = user);
+    this.userSub = this.userService.getUser()
+      .subscribe(user => {
+        this.user = user;
+        this.profileForm.patchValue(user);
+      });
+  }
+
+  unchanged(): boolean {
+    const model = this.profileForm.value as User;
+    return model.username === this.user.username &&
+      model.firstName === this.user.firstName &&
+      model.middleName === this.user.middleName &&
+      model.lastName === this.user.lastName;
   }
 
   save() {

@@ -4,6 +4,8 @@ import { User } from './user';
 import 'rxjs/add/operator/map';
 import { AuthService } from '../../auth/shared/auth.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import 'rxjs/add/operator/first';
+import { EmptyObservable} from 'rxjs/observable/EmptyObservable';
 
 @Injectable()
 export class UserService {
@@ -14,10 +16,17 @@ export class UserService {
   getUser(): Observable<User> {
     return this.authService.getAuthUser()
       .switchMap(authUser => {
+        if (!authUser) {
+          return new EmptyObservable();
+        }
         return this.afs.doc<User>('users/' + authUser.uid).valueChanges()
           .map(dbUser => {
-            dbUser.uid = authUser.uid;
-            dbUser.email = authUser.email;
+            if (dbUser) {
+              authUser.username = dbUser.username;
+              authUser.firstName = dbUser.firstName;
+              authUser.lastName = dbUser.lastName;
+              authUser.middleName = dbUser.middleName;
+            }
             return dbUser;
           });
       });

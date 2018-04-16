@@ -4,6 +4,7 @@ import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/mater
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MarginIconComponent } from './margin-icon/margin-icon.component';
+import { UploadDirective } from './directives/upload.directive';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { MarginIconComponent } from './margin-icon/margin-icon.component';
     MatIconModule,
     FlexLayoutModule
   ],
-  declarations: [ToolbarComponent, MarginIconComponent],
-  exports: [ToolbarComponent, MarginIconComponent]
+  declarations: [ToolbarComponent, MarginIconComponent, UploadDirective],
+  exports: [ToolbarComponent, MarginIconComponent, UploadDirective]
 })
 export class SharedModule { }

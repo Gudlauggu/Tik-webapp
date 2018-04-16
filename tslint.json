@@ -120,7 +120,7 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "tik",
       "camelCase"
     ],
     "component-selector": [
