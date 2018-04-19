@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
       );
     } else {
-      console.log('wrong: ');
+      console.log('wrong: ' + fileList);
       this.snack.open('You need to drop a single png or jpeg image', null, {
         duration: 4000
       });
