@@ -7,6 +7,7 @@ import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { FileService } from '../../file-system/file.service';
 
 @Component({
   selector: 'tik-profile',
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private userService: UserService,
+              private fileService: FileService,
               private fb: FormBuilder,
               private snack: MatSnackBar,
               private router: Router) {
@@ -61,8 +63,23 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   uploadNewImage(fileList) {
-    console.log('filelist: ', fileList);
-
+    if (fileList && fileList.length === 1 &&
+        ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
+      console.log(fileList.item(0));
+      const file = fileList.item(0);
+      const path = 'profile-image/' + file.name;
+      this.fileService.upload(path, file).downloadUrl.subscribe(
+        url => {
+          console.log('url', url);
+          this.img = url;
+        }
+      );
+    } else {
+      console.log('wrong: ');
+      this.snack.open('You need to drop a single png or jpeg image', null, {
+        duration: 4000
+      });
+    }
   }
 
   ngOnInit() {
