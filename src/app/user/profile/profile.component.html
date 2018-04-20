@@ -2,14 +2,20 @@
   <mat-card fxFlex="80">
     <mat-card-header>
       <img
+        [hidden]="!srcLoaded"
         matTooltip="Change Image!"
         [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
-        (@imageHover.done)="changePic($event)"
         tikUpload
         (hovering)="hovering($event)"
         (dropped)="uploadNewImage($event)"
         mat-card-avatar
-        [src]="img">
+        [src]="isHovering ? '/assets/cloud_upload.svg' : img"
+        (load)="srcLoaded = true">
+      <mat-spinner
+        mat-card-avatar
+        [diameter]="35"
+        *ngIf="!srcLoaded">
+      </mat-spinner>
       <mat-card-title>{{user?.username}}</mat-card-title>
       <mat-card-subtitle>{{user?.email}}</mat-card-subtitle>
     </mat-card-header>

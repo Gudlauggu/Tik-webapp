@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userSub: Subscription;
   isHovering: boolean;
   img: string;
+  srcLoaded: boolean;
 
   constructor(private authService: AuthService,
               private userService: UserService,
@@ -53,25 +54,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.isHovering = isHovering;
   }
 
-  changePic(event) {
-    if (event.toState === 'hoveringImage') {
-      this.img = '../../../../assets/cloud_upload.svg';
-    } else {
-      this.img = '../../../../assets/mercy.png';
-    }
-    console.log('animation done', event);
-  }
-
   uploadNewImage(fileList) {
     if (fileList && fileList.length === 1 &&
         ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
-      console.log(fileList.item(0));
+      this.srcLoaded = false;
       const file = fileList.item(0);
-      const path = 'profile-image/' + file.name;
+      const path = 'profile-images/' + this.user.uid;
       this.fileService.upload(path, file).downloadUrl.subscribe(
         url => {
-          console.log('url', url);
           this.img = url;
+          this.user.img = true;
+          this.save();
+          this.hovering(false);
         }
       );
     } else {
@@ -79,6 +73,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.snack.open('You need to drop a single png or jpeg image', null, {
         duration: 4000
       });
+      this.hovering(false);
     }
   }
 
@@ -86,6 +81,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userSub = this.userService.getUser()
       .subscribe(user => {
         this.user = user;
+        if (this.user.img) {
+          this.img = user.profileImgUrl;
+        } else {
+          this.img = '/assets/face.svg';
+        }
+        this.img = user.profileImgUrl;
         this.profileForm.patchValue(user);
       });
   }
@@ -101,9 +102,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
   save() {
     const model = this.profileForm.value as User;
     model.uid = this.user.uid;
+    model.img = this.user.img;
     this.userService.update(model)
-      .then( () => console.log('saved'))
-      .catch(err => console.log('error', err));
+      .then( () => {
+        this.snack.open('User Saved', null, {
+        duration: 2000,
+          verticalPosition: 'top',
+          panelClass: ('snack-color-success')
+      });
+      })
+      .catch(err => {this.snack.open('Something went wrong', null, {
+        duration: 4000,
+        panelClass: ('snack-color-failure')
+      });
+      });
   }
 
 }

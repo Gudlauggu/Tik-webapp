@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatProgressSpinnerModule, MatSnackBarModule,
   MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { ProfileComponent } from './profile/profile.component';
@@ -32,7 +32,8 @@ import { FileSystemModule } from '../file-system/file-system.module';
     MatIconModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    FileSystemModule
+    FileSystemModule,
+    MatProgressSpinnerModule
   ],
   declarations: [ProfileComponent],
   providers: [UserService]

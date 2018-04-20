@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatToolbarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MarginIconComponent } from './margin-icon/margin-icon.component';
@@ -12,7 +12,8 @@ import { UploadDirective } from './directives/upload.directive';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCardModule
   ],
   declarations: [ToolbarComponent, MarginIconComponent, UploadDirective],
   exports: [ToolbarComponent, MarginIconComponent, UploadDirective]
