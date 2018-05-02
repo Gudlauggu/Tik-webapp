@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
         })
         .catch(error => {
           this.snack.open(error.message, '', {
-            duration: 5000
+            duration: 5000,
+            panelClass: ('snack-color-failure')
           });
         });
   }
@@ -50,16 +51,17 @@ export class LoginComponent implements OnInit {
   loginWithFacebook() {
     this.authService.loginWithFacebook()
       .then(() => {
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/profile')
           .then(() =>
             this.snack.open('You are logged in', '', {
               duration: 2000,
-              panelClass: ('snack-color-primary')
+              panelClass: ('snack-color-success')
             }));
       })
       .catch(error => {
         this.snack.open(error.message, '', {
-          duration: 5000
+          duration: 5000,
+          panelClass: ('snack-color-failure')
         });
       });
   }

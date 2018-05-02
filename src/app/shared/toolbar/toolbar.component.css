@@ -1,3 +1,9 @@
 mat-toolbar.special {
   background: url("../../../assets/black_wood-wallpaper-1920x1200.jpg");
 }
+::ng-deep snack-bar-container.snack-color-success {
+  background: darkcyan;
+}
+::ng-deep snack-bar-container.snack-color-failure {
+  background: darkred;
+}

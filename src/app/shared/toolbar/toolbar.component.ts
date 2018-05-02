@@ -36,11 +36,13 @@ export class ToolbarComponent implements OnInit {
           this.router.navigateByUrl('login').then(() =>
             this.snack.open('You Logged out', '', {
               duration: 2000,
+              panelClass: ('snack-color-success')
             }));
         })
       .catch(error => {
         this.snack.open(error.message, '', {
-          duration: 5000
+          duration: 5000,
+          panelClass: ('snack-color-failure')
         });
       });
   }

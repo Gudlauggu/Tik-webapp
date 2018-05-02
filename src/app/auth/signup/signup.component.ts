@@ -43,7 +43,8 @@ export class SignupComponent implements OnInit {
               })
               .catch(error => {
                 this.snack.open(error.message, '', {
-                  duration: 5000
+                  duration: 5000,
+                  panelClass: ('snack-color-failure')
                 });
               });
         });
