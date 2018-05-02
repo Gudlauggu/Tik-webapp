@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../auth/shared/auth.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'tik-toolbar',
@@ -14,7 +15,8 @@ export class ToolbarComponent implements OnInit {
   navToggle = new EventEmitter();
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private snack: MatSnackBar) { }
 
 
   ngOnInit() {
@@ -31,8 +33,16 @@ export class ToolbarComponent implements OnInit {
   logout() {
     this.authService.logout()
         .then(() => {
-          this.router.navigateByUrl('login');
+          this.router.navigateByUrl('login').then(() =>
+            this.snack.open('You Logged out', '', {
+              duration: 2000,
+            }));
+        })
+      .catch(error => {
+        this.snack.open(error.message, '', {
+          duration: 5000
         });
+      });
   }
 
 }

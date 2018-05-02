@@ -106,7 +106,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       .then( () => {
         this.snack.open('User Saved', null, {
         duration: 2000,
-          verticalPosition: 'top',
           panelClass: ('snack-color-success')
       });
       })

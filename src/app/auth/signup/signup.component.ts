@@ -37,7 +37,8 @@ export class SignupComponent implements OnInit {
               .then(() => {
                 console.log(user);
                 this.snack.open('You are Signed Up', '', {
-                  duration: 3000
+                  duration: 3000,
+                  panelClass: ('snack-color-success')
                 });
               })
               .catch(error => {

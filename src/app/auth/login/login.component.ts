@@ -33,10 +33,11 @@ export class LoginComponent implements OnInit {
     const loginModel = this.logInForm.value;
     this.authService.login(loginModel.email, loginModel.password)
         .then(() => {
-          this.router.navigateByUrl('/')
+          this.router.navigateByUrl('/profile')
               .then(() =>
                       this.snack.open('You are logged in', '', {
-                        duration: 2000
+                        duration: 2000,
+                        panelClass: ('snack-color-success')
                       }));
         })
         .catch(error => {
@@ -52,7 +53,8 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/')
           .then(() =>
             this.snack.open('You are logged in', '', {
-              duration: 2000
+              duration: 2000,
+              panelClass: ('snack-color-primary')
             }));
       })
       .catch(error => {
