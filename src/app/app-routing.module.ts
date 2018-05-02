@@ -11,8 +11,8 @@ import { UserModule } from './user/user.module';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent }
-
+  { path: 'profile', component: ProfileComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full'}
 
 ];
 

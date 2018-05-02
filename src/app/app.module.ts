@@ -14,6 +14,7 @@ import { MatIconModule, MatListModule, MatSidenavModule } from '@angular/materia
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MarginIconComponent } from './shared/margin-icon/margin-icon.component';
 import { SharedModule } from './shared/shared.module';
+import { AuthService } from './auth/shared/auth.service';
 
 
 
@@ -35,7 +36,7 @@ import { SharedModule } from './shared/shared.module';
     AngularFireModule.initializeApp(environment.firebase)
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

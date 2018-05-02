@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import * as firebase from 'firebase/app';
 import { User } from '../../user/shared/user';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private fireAuth: AngularFireAuth) { }
+  private user: Observable<firebase.User>;
+  constructor(private fireAuth: AngularFireAuth) {
+    this.user = this.fireAuth.authState;
+  }
 
   login(email: string, password: string): Promise<any> {
     return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password);
@@ -15,6 +19,12 @@ export class AuthService {
 
   logout(): Promise<any> {
     return this.fireAuth.auth.signOut();
+  }
+
+  loginWithFacebook() {
+    return this.fireAuth.auth.signInWithPopup(
+      new firebase.auth.FacebookAuthProvider()
+    );
   }
 
   signup(user: User): Promise<any> {
@@ -38,7 +48,7 @@ export class AuthService {
         if (!authState) {
           return null;
         }
-        return authState as User;
+        return {email: authState.email, uid: authState.uid};
       });
   }
 

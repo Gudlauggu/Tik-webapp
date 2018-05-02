@@ -1,7 +1,13 @@
 mat-sidenav{
-  background: #F7F9FA;
+  background: #4f5051;
   width: 250px;
 }
 mat-sidenav-container{
   background: white;
+  background: url("../assets/black_wood-wallpaper-1920x1200.jpg");
 }
+
+footer{
+  color: white;
+}
+

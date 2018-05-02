@@ -18,15 +18,14 @@ export class SignupComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private router: Router,
               private snack: MatSnackBar,
-              private authService: AuthService) {
-    this.signUpForm = fb.group({
-                                 email: ['', [Validators.required, Validators.email]],
-                                 password: ['', [Validators.required, Validators.minLength(6)]],
-                                 repeatPassword: ['', [Validators.required, matchPassword()]]
-                               });
-  }
+              private authService: AuthService) {  }
 
   ngOnInit() {
+    this.signUpForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      repeatPassword: ['', [Validators.required, matchPassword()]]
+    });
   }
 
   signUp() {

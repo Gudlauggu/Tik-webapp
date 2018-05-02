@@ -36,14 +36,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private fileService: FileService,
               private fb: FormBuilder,
-              private snack: MatSnackBar,
-              private router: Router) {
+              private snack: MatSnackBar) {
     this.profileForm = fb.group( {
       username: ['', [Validators.required, Validators.minLength(4)]],
       firstName: '',
       middleName: '',
       lastName: ''
     });
+  }
+
+  ngOnInit() {
+    this.userSub = this.userService.getUserWithProfileUrl()
+      .subscribe(user => {
+        this.user = user;
+        if (this.user && this.user.img) {
+          this.img = user.profileImgUrl;
+        } else {
+          this.img = '/assets/face.svg';
+        }
+        this.profileForm.patchValue(user);
+      });
   }
 
   ngOnDestroy() {
@@ -77,19 +89,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit() {
-    this.userSub = this.userService.getUser()
-      .subscribe(user => {
-        this.user = user;
-        if (this.user.img) {
-          this.img = user.profileImgUrl;
-        } else {
-          this.img = '/assets/face.svg';
-        }
-        this.img = user.profileImgUrl;
-        this.profileForm.patchValue(user);
-      });
-  }
 
   unchanged(): boolean {
     const model = this.profileForm.value as User;

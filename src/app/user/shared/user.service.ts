@@ -30,7 +30,7 @@ export class UserService {
               authUser.middleName = dbUser.middleName;
               authUser.img = dbUser.img;
             }
-            return dbUser;
+            return authUser;
           });
       });
   }

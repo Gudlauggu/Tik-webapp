@@ -14,7 +14,7 @@ export class LoggedInGuard implements CanActivate {
     return this.authService.isAuthenticated()
                .map(isLoggedIn => {
                  if (isLoggedIn) {
-                   this.router.navigateByUrl('albums');
+                   this.router.navigateByUrl('/');
                  }
                  return !isLoggedIn;
                });

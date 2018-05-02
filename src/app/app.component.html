@@ -1,6 +1,7 @@
 <mat-sidenav-container fxFlexFill (backdropClick)="toggleNav()">
   <mat-sidenav [mode]="mode"
                [opened]="navBarOpen">
+
     <mat-nav-list>
       <a *ngFor="let route of routes"
          mat-list-item [routerLink]="route.route">
@@ -9,13 +10,19 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content fxLayout="column">
+    <header fxFlexOffset="30px">
+      <img
+        src="/assets/cropped-tikheader.png"
+        fxFlexAlign="center"
+      >
+    </header>
     <tik-toolbar (navToggle)="toggleNav()"></tik-toolbar>
     <div fxFlex>
       <router-outlet></router-outlet>
     </div>
     <footer fxLayout="column">
       <hr fxFlexFill>
-      <p fxFlexAlign="center">Copyright © 2018 Guðlaug Guðjónsdóttir</p>
+      <p fxFlexAlign="center">Copyright © 2018 Guðlaug Guðjónsdóttir & Ingvar Örn Þórarinsson</p>
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

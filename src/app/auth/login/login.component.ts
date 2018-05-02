@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     const loginModel = this.logInForm.value;
     this.authService.login(loginModel.email, loginModel.password)
         .then(() => {
-          this.router.navigateByUrl('')
+          this.router.navigateByUrl('/')
               .then(() =>
                       this.snack.open('You are logged in', '', {
                         duration: 2000
@@ -44,6 +44,22 @@ export class LoginComponent implements OnInit {
             duration: 5000
           });
         });
+  }
+
+  loginWithFacebook() {
+    this.authService.loginWithFacebook()
+      .then(() => {
+        this.router.navigateByUrl('/')
+          .then(() =>
+            this.snack.open('You are logged in', '', {
+              duration: 2000
+            }));
+      })
+      .catch(error => {
+        this.snack.open(error.message, '', {
+          duration: 5000
+        });
+      });
   }
 
 }

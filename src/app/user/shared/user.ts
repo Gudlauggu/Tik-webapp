@@ -6,6 +6,7 @@ export class User {
   firstName?: string;
   middleName?: string;
   lastName?: string;
-  profileImgUrl?: string;
   img?: boolean;
+  profileImgUrl?: string;
+
 }

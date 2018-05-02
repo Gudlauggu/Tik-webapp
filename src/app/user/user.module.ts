@@ -14,6 +14,9 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSystemModule } from '../file-system/file-system.module';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../../environments/environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   imports: [

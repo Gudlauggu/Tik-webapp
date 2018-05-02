@@ -34,6 +34,6 @@ export class UploadDirective {
   @HostListener('drop', ['$event'])
   onDrop(event) {
     event.preventDefault();
-    this.dropped.emit(event.dataTransfer.fiels);
+    this.dropped.emit(event.dataTransfer.files);
   }
 }
