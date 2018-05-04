@@ -15,6 +15,7 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { MarginIconComponent } from './shared/margin-icon/margin-icon.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthService } from './auth/shared/auth.service';
+import { NewsModule } from './news/news.module';
 
 
 
@@ -33,6 +34,7 @@ import { AuthService } from './auth/shared/auth.service';
     MatListModule,
     MatIconModule,
     SharedModule,
+    NewsModule,
     AngularFireModule.initializeApp(environment.firebase)
 
   ],

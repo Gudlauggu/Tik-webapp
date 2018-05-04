@@ -7,7 +7,7 @@ import { User } from '../shared/user';
 import { UserService } from '../shared/user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FileService } from '../../file-system/file.service';
+import { NewsService } from '../../shared/news/news.service';
 
 @Component({
   selector: 'tik-profile',
@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private userService: UserService,
-              private fileService: FileService,
+              private fileService: NewsService,
               private fb: FormBuilder,
               private snack: MatSnackBar) {
     this.profileForm = fb.group( {
