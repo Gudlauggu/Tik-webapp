@@ -13,10 +13,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NewsSystemModule } from '../news-system/news-system.module';
-import { AngularFireModule } from 'angularfire2';
-import { environment } from '../../environments/environment';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 
 @NgModule({
   imports: [
@@ -35,7 +32,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     MatIconModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    NewsSystemModule,
     MatProgressSpinnerModule
   ],
   declarations: [ProfileComponent],

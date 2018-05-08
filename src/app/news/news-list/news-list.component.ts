@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { News } from '../shared/news';
 
 @Component({
   selector: 'tik-news-list',
@@ -7,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsListComponent implements OnInit {
 
+  @Input()
+  url: string;
+  @Input()
+  news: News;
   constructor() { }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="center" *ngIf="user">
-  <mat-card fxFlex="80">
+<div fxLayout="row" fxLayoutAlign="center" >
+  <mat-card fxFlex="60"
+            *ngIf="user">
     <mat-card-header>
       <img
         [hidden]="!srcLoaded"
@@ -58,4 +59,9 @@
       </form>
     </mat-card-content>
   </mat-card>
+  <mat-spinner
+    *ngIf="!user"
+    [diameter]="75">
+    Loading...
+  </mat-spinner>
 </div>

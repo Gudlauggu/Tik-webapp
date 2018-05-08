@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MarginIconComponent } from './margin-icon/margin-icon.component';
 import { UploadDirective } from './directives/upload.directive';
-import { NewsService } from './news/news.service';
+import { FileService } from './files/file.service';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
@@ -20,6 +20,6 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
   ],
   declarations: [ToolbarComponent, MarginIconComponent, UploadDirective],
   exports: [ToolbarComponent, MarginIconComponent, UploadDirective],
-  providers: [NewsService]
+  providers: [FileService]
 })
 export class SharedModule { }
