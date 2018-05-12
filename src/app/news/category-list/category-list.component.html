@@ -4,7 +4,7 @@
     <mat-nav-list>
       <h3 mat-subheader>Categories</h3>
       <mat-list-item
-        *ngFor="let categories of categories"
+        *ngFor="let categories of categories | async"
         (click)="categoryClicked(categories)">
         <mat-icon
           color="primary"

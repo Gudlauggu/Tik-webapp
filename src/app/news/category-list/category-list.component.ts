@@ -12,14 +12,13 @@ export class CategoryListComponent implements OnInit {
 
 
   constructor(private categoryService: CategoryService) {
-
+    this.categoryService.getCategories();
 
   }
 
 
 
   ngOnInit() {
-    /*console.log(this.categoryService.getCategories());*/
   }
 
   categoryClicked(categories) {
