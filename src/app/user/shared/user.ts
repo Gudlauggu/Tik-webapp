@@ -8,5 +8,8 @@ export interface User {
   lastName?: string;
   img?: boolean;
   profileImgUrl?: string;
-
+  news?: [{
+    displayName: string;
+    uid: string;
+  }];
 }

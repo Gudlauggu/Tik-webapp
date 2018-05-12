@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { News } from '../shared/news';
 
 @Component({
@@ -12,6 +12,9 @@ export class NewsListComponent implements OnInit {
   url: string;
   @Input()
   news: News;
+  @Output()
+  newsClicked = new EventEmitter<News>();
+
   constructor() { }
 
   ngOnInit() {

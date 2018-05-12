@@ -8,7 +8,8 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AuthService } from './shared/auth.service';
 import { SignupComponent } from './signup/signup.component';
-import { ProfileComponent } from '../user/profile/profile.component';
+import { LoggedInGuard } from './shared/logged-in.guard';
+import { AuthGuard } from './shared/auth-guard.service';
 
 
 @NgModule({
@@ -25,6 +26,6 @@ import { ProfileComponent } from '../user/profile/profile.component';
     RouterModule
   ],
   declarations: [LoginComponent, SignupComponent],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuard, LoggedInGuard]
 })
 export class AuthModule { }

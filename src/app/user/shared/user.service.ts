@@ -6,13 +6,13 @@ import { AuthService } from '../../auth/shared/auth.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import 'rxjs/add/operator/first';
 import { EmptyObservable} from 'rxjs/observable/EmptyObservable';
-import { FileService } from '../../shared/files/file.service';
+import { StorageService } from '../../shared/storage/storage.service';
 
 @Injectable()
 export class UserService {
 
   constructor(private authService: AuthService,
-              private newsService: FileService,
+              private storageService: StorageService,
               private afs: AngularFirestore) { }
 
   getUser(): Observable<User> {
@@ -43,7 +43,7 @@ export class UserService {
             obs.next(user);
           });
         }
-        return this.newsService.downloadUrlProfile(user.uid)
+        return this.storageService.downloadUrlProfile(user.uid)
           .map(url => {
             user.profileImgUrl = url;
             return user;

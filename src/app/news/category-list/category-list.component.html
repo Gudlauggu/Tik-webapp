@@ -5,7 +5,7 @@
       <h3 mat-subheader>Categories</h3>
       <mat-list-item
         *ngFor="let categories of categories"
-        (click)="categoryClicked()">
+        (click)="categoryClicked(categories)">
         <mat-icon
           color="primary"
           mat-list-icon>

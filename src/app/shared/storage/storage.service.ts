@@ -4,7 +4,7 @@ import { UploadTask } from './upload-task';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class FileService {
+export class StorageService {
 
   constructor(private afso: AngularFireStorage) { }
 

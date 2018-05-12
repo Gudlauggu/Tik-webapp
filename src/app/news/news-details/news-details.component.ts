@@ -15,6 +15,7 @@ export class NewsDetailsComponent implements OnInit {
     this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
 
     this.news = {
+      uid: '123',
       displayName: 'Hard coded Test News Title',
       created: '05/05/2018',
       owner: 'Jón Jónsson',
@@ -29,7 +30,7 @@ export class NewsDetailsComponent implements OnInit {
   }
 
   like() {
-    console.log('Liked the files');
+    console.log('Liked the storage');
   }
 
 }

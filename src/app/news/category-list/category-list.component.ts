@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { Category } from '../shared/category';
+
+import { CategoryService } from '../../shared/db/category.service';
+
 
 @Component({
   selector: 'tik-category-list',
@@ -8,21 +10,19 @@ import { Category } from '../shared/category';
 })
 export class CategoryListComponent implements OnInit {
 
- constructor() {
+
+  constructor(private categoryService: CategoryService) {
 
 
   }
 
-  categories = [
-    {name: 'Games'},
-    {name: 'Movies'},
-    {name: 'Culture'},
-  ];
+
 
   ngOnInit() {
+    /*console.log(this.categoryService.getCategories());*/
   }
 
-  categoryClicked() {
-    console.log('Category clicked');
+  categoryClicked(categories) {
+    console.log('Category clicked: ' + categories.name);
   }
 }

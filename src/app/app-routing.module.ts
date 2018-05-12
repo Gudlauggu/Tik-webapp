@@ -9,6 +9,8 @@ import { UserModule } from './user/user.module';
 import { CategoryListComponent } from './news/category-list/category-list.component';
 import { CategoryDetailsComponent } from './news/category-details/category-details.component';
 import { NewsDetailsComponent } from './news/news-details/news-details.component';
+import { LoggedInGuard } from './auth/shared/logged-in.guard';
+import { AuthGuard } from './auth/shared/auth-guard.service';
 
 
 const routes: Routes = [

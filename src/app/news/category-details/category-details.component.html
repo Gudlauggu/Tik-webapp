@@ -5,7 +5,12 @@
       <mat-card-title>CATEGORY NAME</mat-card-title>
     </mat-card-header>
 
-<tik-news-list [url]="url" [news]="news"></tik-news-list>
+<tik-news-list
+  *ngFor="let news of news"
+  [url]="url"
+  [news]="news"
+  (newsClicked)="newsClicked($event)"
+></tik-news-list>
 
   </mat-card>
   </div>

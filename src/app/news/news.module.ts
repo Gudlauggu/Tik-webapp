@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SharedModule
   ],
   declarations: [NewsListComponent, NewsDetailsComponent, CategoryListComponent, CategoryDetailsComponent],
   exports: [NewsListComponent]
