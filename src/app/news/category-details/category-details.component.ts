@@ -3,6 +3,7 @@ import { Category } from '../shared/category';
 import { News } from '../shared/news';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { CategoryService } from '../../shared/db/category.service';
 
 @Component({
   selector: 'tik-category-details',
@@ -11,58 +12,29 @@ import { Observable } from 'rxjs/Observable';
 })
 export class CategoryDetailsComponent implements OnInit {
 
+  categoryId: string;
+
   @Input()
-  categories: Category[];
+  category: Category;
+
   @Output()
   clickedCategory = new EventEmitter<Category>();
+
   @Input()
   url: string;
 
-  categoryRef: AngularFirestoreDocument<any>;
-  category$: Observable<any>;
-  newsRef: AngularFirestoreCollection<any>;
-  news$: Observable<any>;
-
-  formValue: string;
-
-  constructor(private afs: AngularFirestore) {
+  constructor(private categoryService: CategoryService) {
     this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
   }
 
-  news = [
-    {
-      uid: '123',
-      displayName: 'Hard coded Test News Title',
-      created: '05/05/2018',
-      owner: 'Jón Jónsson',
-      image: false,
-      text: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.\n' +
-      '      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally\n' +
-      '      bred for hunting.'
-    },
-    {
-      uid: '123',
-      displayName: 'Hard coded Test News Title 2',
-      created: '09/05/2018',
-      owner: 'Björn Jónsson',
-      image: false,
-      text: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.\n' +
-      '      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally\n' +
-      '      bred for hunting.'
-    },
-    {
-      uid: '123',
-      displayName: 'DOES IT WORK?',
-      created: '09/05/2018',
-      owner: 'BOB BOBBERS',
-      image: false,
-      text: 'No text yet'
-    },
-  ];
 
   ngOnInit() {
+    this.categoryService.currentCategoryUid
+      .subscribe(categoryId => this.categoryId = categoryId);
 
-
+    this.categoryService.getCategory(this.categoryId).subscribe(category => {
+      this.category = category;
+      });
   }
 
   newsClicked(news) {

@@ -11,6 +11,7 @@ import { CategoryDetailsComponent } from './news/category-details/category-detai
 import { NewsDetailsComponent } from './news/news-details/news-details.component';
 import { LoggedInGuard } from './auth/shared/logged-in.guard';
 import { AuthGuard } from './auth/shared/auth-guard.service';
+import { WriteComponent } from './news/write/write.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'news', component:  NewsDetailsComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'category', component: CategoryListComponent },
-  { path: 'category-detail', component: CategoryDetailsComponent }
+  { path: 'category-detail', component: CategoryDetailsComponent },
+  { path: 'write', component: WriteComponent }
 
 ];
 

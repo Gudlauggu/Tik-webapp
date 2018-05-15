@@ -2,11 +2,11 @@
      fxLayoutAlign="center">
   <mat-card fxFlex="60">
     <mat-card-header>
-      <mat-card-title>CATEGORY NAME</mat-card-title>
+      <mat-card-title>Category: {{category.name}}</mat-card-title>
     </mat-card-header>
 
 <tik-news-list
-  *ngFor="let news of news"
+  *ngFor="let news of category.news"
   [url]="url"
   [news]="news"
   (newsClicked)="newsClicked($event)"

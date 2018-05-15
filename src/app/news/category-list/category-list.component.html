@@ -1,18 +1,24 @@
 <div fxLayout="row"
      fxLayoutAlign="center">
-  <mat-card fxFlex="60">
+  <mat-card fxFlex="60"
+            *ngIf="categories">
     <mat-nav-list>
       <h3 mat-subheader>Categories</h3>
       <mat-list-item
-        *ngFor="let categories of categories | async"
-        (click)="categoryClicked(categories)">
+        *ngFor="let category of categories"
+        (click)="categoryClicked(category)">
         <mat-icon
           color="primary"
           mat-list-icon>
           folder
         </mat-icon>
-        <h4 mat-line>{{categories.name}}</h4>
+        <h4 mat-line>{{category.data.name}}</h4>
       </mat-list-item>
     </mat-nav-list>
   </mat-card>
+  <mat-spinner
+    *ngIf="!categories"
+    [diameter]="75">
+    Loading...
+  </mat-spinner>
 </div>

@@ -8,6 +8,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentsComponent } from './comments/comments.component';
+import { WriteComponent } from './write/write.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { CommentsComponent } from './comments/comments.component';
     MatProgressSpinnerModule,
     SharedModule
   ],
-  declarations: [NewsListComponent, NewsDetailsComponent, CategoryListComponent, CategoryDetailsComponent, CommentsComponent],
+  declarations: [NewsListComponent, NewsDetailsComponent, CategoryListComponent,
+    CategoryDetailsComponent, CommentsComponent, WriteComponent],
   exports: [NewsListComponent]
 })
 export class NewsModule { }
