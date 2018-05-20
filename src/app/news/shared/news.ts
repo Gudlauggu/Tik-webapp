@@ -2,8 +2,12 @@ export interface News {
   uid: string;
   created: string;
   displayName: string;
-  owner?: string;
   text?: string;
   image?: boolean;
-  category?: string;
+  categoryName?: string;
+  categoryUid?: string;
+  ownerFirstName?: string;
+  ownerMiddleName?: string;
+  ownerLastName?: string;
+  ownerUid?: string;
 }

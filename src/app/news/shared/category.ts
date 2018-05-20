@@ -4,5 +4,9 @@ export interface Category {
   news?: [{
     displayName: string;
     uid: string
+    created?: string;
+    ownerFirstName?: string;
+    ownerMiddleName?: string;
+    ownerLastName?: string;
   }];
 }

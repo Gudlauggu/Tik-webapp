@@ -1,16 +1,47 @@
 <div fxLayout="row"
-     fxLayoutAlign="center">
+     fxLayoutAlign="center"
+     *ngIf="category">
   <mat-card fxFlex="60">
     <mat-card-header>
       <mat-card-title>Category: {{category.name}}</mat-card-title>
+      <span fxFlex fxFlexOffset="10px"></span>
+      <button mat-button
+              color="primary"
+              (click)="backClicked()">
+        <mat-icon>arrow_back</mat-icon>
+        BACK</button>
     </mat-card-header>
 
-<tik-news-list
-  *ngFor="let news of category.news"
-  [url]="url"
-  [news]="news"
-  (newsClicked)="newsClicked($event)"
-></tik-news-list>
+
+    <div *ngFor="let news of category.news"
+         (click)="thisNewsClicked(news.uid)"
+         (url)="url">
+      <mat-card-content>
+        <div>
+          <img [style.max-width]="'100%'"
+               [src]="url">
+        </div>
+        <mat-list dense
+                  fxFlex="60"
+                  fxFlexAlign="start"
+                  fxFlexOffset="1">
+          <mat-list-item>{{news.displayName}}</mat-list-item>
+          <mat-list-item>Author:
+            {{news.ownerFirstName}}
+            {{news.ownerMiddleName}}
+            {{news.ownerLastName}}</mat-list-item>
+          <mat-list-item>Published: {{news.created}}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+    </div>
+
+
 
   </mat-card>
+  <mat-spinner
+    *ngIf="!category"
+    [diameter]="75">
+    Loading...
+  </mat-spinner>
   </div>

@@ -12,17 +12,19 @@ import { NewsDetailsComponent } from './news/news-details/news-details.component
 import { LoggedInGuard } from './auth/shared/logged-in.guard';
 import { AuthGuard } from './auth/shared/auth-guard.service';
 import { WriteComponent } from './news/write/write.component';
+import { NewsListComponent } from './news/news-list/news-list.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard] },
   { path: 'signup', component: SignupComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'news', component:  NewsDetailsComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  // { path: 'news/:id', component:  NewsDetailsComponent},
+  // { path: '', redirectTo: '/category', pathMatch: 'full'},
   { path: 'category', component: CategoryListComponent },
-  { path: 'category-detail', component: CategoryDetailsComponent },
-  { path: 'write', component: WriteComponent }
+  { path: 'category-detail/:id', component: CategoryDetailsComponent },
+  { path: 'news-list', component:  NewsListComponent},
+  { path: 'write', component: WriteComponent, canActivate: [AuthGuard] }
 
 ];
 

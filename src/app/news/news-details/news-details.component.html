@@ -4,7 +4,9 @@
           *ngIf="news">
   <mat-card-header>
     <mat-card-title>{{news.displayName}}</mat-card-title>
-    <mat-card-subtitle>Author: {{news.owner}}</mat-card-subtitle>
+    <mat-card-subtitle>Author:
+      {{news.ownerFirstName}} {{news.ownerMiddleName}} {{news.ownerLastName}}
+    </mat-card-subtitle>
     <mat-card-subtitle>Published: {{news.created}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
@@ -14,20 +16,10 @@
     </div>
     <div>
       <p>
-        Text: {{news.text}}
+        {{news.text}}
       </p>
     </div>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button
-            color="primary"
-            (click)="like()">
-    <mat-icon>thumb_up</mat-icon>
-            LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-  <mat-divider></mat-divider>
-  <tik-comments></tik-comments>
 </mat-card>
 
   <mat-spinner

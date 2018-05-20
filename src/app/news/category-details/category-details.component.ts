@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Category } from '../shared/category';
-import { News } from '../shared/news';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
 import { CategoryService } from '../../shared/db/category.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NewsService } from '../../shared/db/news.service';
+import { forEach } from '@angular/router/src/utils/collection';
+import { News } from '../shared/news';
 
 @Component({
   selector: 'tik-category-details',
@@ -12,32 +13,39 @@ import { CategoryService } from '../../shared/db/category.service';
 })
 export class CategoryDetailsComponent implements OnInit {
 
-  categoryId: string;
 
-  @Input()
   category: Category;
-
-  @Output()
-  clickedCategory = new EventEmitter<Category>();
+  news: News;
 
   @Input()
   url: string;
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService,
+              private router: Router,
+              private newsService: NewsService,
+              private route: ActivatedRoute) {
     this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
   }
 
 
   ngOnInit() {
-    this.categoryService.currentCategoryUid
-      .subscribe(categoryId => this.categoryId = categoryId);
-
-    this.categoryService.getCategory(this.categoryId).subscribe(category => {
-      this.category = category;
+    this.route.paramMap
+      .subscribe(params => {
+        const id = params.get('id');
+        this.categoryService.getCategory(id)
+          .subscribe(category => {
+            this.category = category;
+          });
       });
+
+
   }
 
-  newsClicked(news) {
-    console.log('News clicked: ' + news.displayName);
+  thisNewsClicked(id) {
+    this.router.navigateByUrl('/news/' + id);
+  }
+
+  backClicked() {
+    this.router.navigateByUrl('/category');
   }
 }

@@ -9,6 +9,7 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
 import { SharedModule } from '../shared/shared.module';
 import { CommentsComponent } from './comments/comments.component';
 import { WriteComponent } from './write/write.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { WriteComponent } from './write/write.component';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   declarations: [NewsListComponent, NewsDetailsComponent, CategoryListComponent,
     CategoryDetailsComponent, CommentsComponent, WriteComponent],
