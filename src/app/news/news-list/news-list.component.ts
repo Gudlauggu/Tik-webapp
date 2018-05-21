@@ -12,22 +12,23 @@ export class NewsListComponent implements OnInit {
 
   url: string;
 
-  news: News;
-  newsId: string;
+  news: News[];
 
   constructor(private router: Router,
-              private newsService: NewsService) { }
+              private newsService: NewsService) {
+    this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
+  }
 
   ngOnInit() {
     this.newsService.getNews()
       .subscribe(news => {
         this.news = news;
+        // console.log(this.news);
       });
-
   }
 
-  thisNewsClicked() {
-    console.log(this.newsId);
-    // this.router.navigateByUrl('/news/' + this.news.uid);
+  thisNewsClicked(newsId) {
+    // console.log(newsId);
+    this.router.navigateByUrl('/news/' + newsId);
   }
 }

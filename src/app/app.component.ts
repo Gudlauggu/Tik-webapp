@@ -11,7 +11,7 @@ import { AuthService } from './auth/shared/auth.service';
 export class AppComponent implements OnInit, OnDestroy {
   routes = [
     {route: '/', title: 'Home', icon: 'home'},
-    // {route: '/news-list', title: 'News', icon: 'library_books'},
+     {route: '/news-list', title: 'News', icon: 'library_books'},
     {route: '/category', title: 'Categories', icon: 'list'},
     // {route: '/category-detail', title: 'Category Detail', icon: 'list'},
     {route: '/login', title: 'Login', icon: 'vpn_key'},

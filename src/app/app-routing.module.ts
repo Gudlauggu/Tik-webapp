@@ -17,13 +17,13 @@ import { NewsListComponent } from './news/news-list/news-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoggedInGuard] },
-  { path: 'signup', component: SignupComponent },
+  { path: 'signup', component: SignupComponent, canActivate: [LoggedInGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  // { path: 'news/:id', component:  NewsDetailsComponent},
+   { path: 'news/:id', component:  NewsDetailsComponent},
   // { path: '', redirectTo: '/category', pathMatch: 'full'},
   { path: 'category', component: CategoryListComponent },
   { path: 'category-detail/:id', component: CategoryDetailsComponent },
-  { path: 'news-list', component:  NewsListComponent},
+   { path: 'news-list', component:  NewsListComponent},
   { path: 'write', component: WriteComponent, canActivate: [AuthGuard] }
 
 ];
