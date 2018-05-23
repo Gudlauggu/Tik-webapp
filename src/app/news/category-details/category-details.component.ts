@@ -32,6 +32,10 @@ export class CategoryDetailsComponent implements OnInit {
     this.route.paramMap
       .subscribe(params => {
         const id = params.get('id');
+        this.newsService.getNewsByCategory(id)
+          .subscribe(news => {
+            this.news = news;
+          });
         this.categoryService.getCategory(id)
           .subscribe(category => {
             this.category = category;

@@ -1,6 +1,6 @@
 <div fxLayout="row"
      fxLayoutAlign="center"
-     *ngIf="category">
+     *ngIf="news">
   <mat-card fxFlex="60">
     <mat-card-header>
       <mat-card-title>Category: {{category.name}}</mat-card-title>
@@ -13,8 +13,8 @@
     </mat-card-header>
 
 
-    <div *ngFor="let news of category.news"
-         (click)="thisNewsClicked(news.uid)"
+    <div *ngFor="let newss of news"
+         (click)="thisNewsClicked(newss.uid)"
          (url)="url">
       <mat-card-content>
         <div>
@@ -25,12 +25,12 @@
                   fxFlex="60"
                   fxFlexAlign="start"
                   fxFlexOffset="1">
-          <mat-list-item>{{news.displayName}}</mat-list-item>
+          <mat-list-item>{{newss.displayName}}</mat-list-item>
           <mat-list-item>Author:
-            {{news.ownerFirstName}}
-            {{news.ownerMiddleName}}
-            {{news.ownerLastName}}</mat-list-item>
-          <mat-list-item>Published: {{news.created}}</mat-list-item>
+            {{newss.ownerFirstName}}
+            {{newss.ownerMiddleName}}
+            {{newss.ownerLastName}}</mat-list-item>
+          <mat-list-item>Published: {{newss.created}}</mat-list-item>
         </mat-list>
       </mat-card-content>
       <mat-divider></mat-divider>
@@ -40,7 +40,7 @@
 
   </mat-card>
   <mat-spinner
-    *ngIf="!category"
+    *ngIf="!news"
     [diameter]="75">
     Loading...
   </mat-spinner>

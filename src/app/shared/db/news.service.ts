@@ -30,6 +30,12 @@ export class NewsService {
       });
   }
 
+  getNewsByCategory(categoryId: string): Observable<any> {
+    return this.afs.collection<News>('news', ref => ref
+          .where('categoryUid', '==', categoryId))
+      .valueChanges();
+  }
+
   getOneNews(newsId: string): Observable<News> {
     return this.afs.doc<News>('news/' + newsId).valueChanges();
   }
