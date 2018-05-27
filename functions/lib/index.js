@@ -10,6 +10,15 @@ function updateNews(id, userInfo) {
         ownerLastName: userInfo.lastName
     });
 }
+exports.newNews = functions.firestore
+    .document('news/{newsId}')
+    .onCreate((snap, context) => {
+    const documentRef = admin.firestore().doc('news/' + snap.id);
+    documentRef.update({
+        uid: snap.id
+    });
+    return snap;
+});
 exports.updatedUser = functions.firestore
     .document('users/{userId}')
     .onUpdate((change, context) => {

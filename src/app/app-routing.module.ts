@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [LoggedInGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
    { path: 'news/:id', component:  NewsDetailsComponent},
-  // { path: '', redirectTo: '/category', pathMatch: 'full'},
+   { path: '', redirectTo: '/news-list', pathMatch: 'full'},
   { path: 'category', component: CategoryListComponent },
   { path: 'category-detail/:id', component: CategoryDetailsComponent },
    { path: 'news-list', component:  NewsListComponent},

@@ -10,13 +10,11 @@ import { NewsService } from '../../shared/db/news.service';
 })
 export class NewsListComponent implements OnInit {
 
-  url: string;
 
   news: News[];
 
   constructor(private router: Router,
               private newsService: NewsService) {
-    this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
   }
 
   ngOnInit() {

@@ -4,6 +4,8 @@ import { News } from '../../news/shared/news';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CategoryService } from './category.service';
+import { StorageService } from '../storage/storage.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class NewsService {
@@ -30,6 +32,7 @@ export class NewsService {
       });
   }
 
+
   getNewsByCategory(categoryId: string): Observable<any> {
     return this.afs.collection<News>('news', ref => ref
           .where('categoryUid', '==', categoryId))
@@ -40,5 +43,8 @@ export class NewsService {
     return this.afs.doc<News>('news/' + newsId).valueChanges();
   }
 
+  saveNews(news: News): Promise<any> {
+     return this.afs.collection('news').add(news);
+  }
 
 }

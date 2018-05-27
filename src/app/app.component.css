@@ -11,3 +11,11 @@ footer{
   color: white;
 }
 
+::ng-deep snack-bar-container.snack-color-success {
+  background: darkcyan;
+}
+::ng-deep snack-bar-container.snack-color-failure {
+  background: darkred;
+}
+
+

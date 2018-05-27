@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../../auth/shared/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { User } from '../shared/user';
@@ -34,7 +33,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private userService: UserService,
-              private fileService: StorageService,
+              private storageService: StorageService,
               private fb: FormBuilder,
               private snack: MatSnackBar) {
     this.profileForm = fb.group( {
@@ -72,7 +71,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.srcLoaded = false;
       const file = fileList.item(0);
       const path = 'profile-images/' + this.user.uid;
-      this.fileService.upload(path, file).downloadUrl.subscribe(
+      this.storageService.upload(path, file).downloadUrl.subscribe(
         url => {
           this.img = url;
           this.user.img = true;

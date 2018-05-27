@@ -14,12 +14,11 @@
 
 
     <div *ngFor="let newss of news"
-         (click)="thisNewsClicked(newss.uid)"
-         (url)="url">
+         (click)="thisNewsClicked(newss.uid)">
       <mat-card-content>
         <div>
           <img [style.max-width]="'100%'"
-               [src]="url">
+               [src]='newss?.imgUrl'>
         </div>
         <mat-list dense
                   fxFlex="60"

@@ -11,10 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class NewsDetailsComponent implements OnInit {
 
   news: News;
-  url: string;
+
   constructor(private newsService: NewsService,
               private route: ActivatedRoute) {
-    this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
   }
 
   ngOnInit() {

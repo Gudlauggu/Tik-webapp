@@ -17,14 +17,10 @@ export class CategoryDetailsComponent implements OnInit {
   category: Category;
   news: News;
 
-  @Input()
-  url: string;
-
   constructor(private categoryService: CategoryService,
               private router: Router,
               private newsService: NewsService,
               private route: ActivatedRoute) {
-    this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
   }
 
 
@@ -32,13 +28,13 @@ export class CategoryDetailsComponent implements OnInit {
     this.route.paramMap
       .subscribe(params => {
         const id = params.get('id');
-        this.newsService.getNewsByCategory(id)
-          .subscribe(news => {
-            this.news = news;
-          });
         this.categoryService.getCategory(id)
           .subscribe(category => {
             this.category = category;
+          });
+        this.newsService.getNewsByCategory(id)
+          .subscribe(news => {
+            this.news = news;
           });
       });
 

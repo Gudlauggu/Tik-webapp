@@ -4,6 +4,7 @@ export interface News {
   displayName: string;
   text?: string;
   image?: boolean;
+  imgUrl?: string;
   categoryName?: string;
   categoryUid?: string;
   ownerFirstName?: string;
