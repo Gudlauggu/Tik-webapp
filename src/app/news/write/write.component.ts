@@ -56,13 +56,18 @@ export class WriteComponent implements OnInit {
       this.storageService.upload(path, file).downloadUrl.subscribe(
         url => {
           this.img = url;
+          this.snack.open('Uploaded an Image!', null, {
+            duration: 4000,
+            panelClass: ('snack-color-success')
+          });
           // this.save();
         }
       );
     } else {
       console.log('wrong: ' + fileList.target.files[0]);
       this.snack.open('You need to drop a single png or jpeg image', null, {
-        duration: 4000
+        duration: 4000,
+        panelClass: ('snack-color-failure')
       });
     }
   }
