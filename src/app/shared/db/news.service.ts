@@ -12,13 +12,6 @@ export class NewsService {
 
   constructor(private afs: AngularFirestore) { }
 
-  /*getNews(): Observable<News> {
-    return this.afs.doc<News>('news').valueChanges()
-      .map(news => {
-
-        return news;
-      });
-  }*/
 
   getNews(): Observable<any> {
     return this.afs.collection<News>('news')

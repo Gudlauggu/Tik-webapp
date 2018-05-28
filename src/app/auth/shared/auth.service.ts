@@ -35,6 +35,10 @@ export class AuthService {
                );
   }
 
+  delete() {
+
+  }
+
   isAuthenticated(): Observable<boolean> {
     return this.fireAuth.authState
                .map(authstate => {

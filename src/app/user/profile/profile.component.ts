@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { StorageService } from '../../shared/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tik-profile',
@@ -30,12 +31,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isHovering: boolean;
   img: string;
   srcLoaded: boolean;
+  validateDelete: boolean;
 
   constructor(private authService: AuthService,
               private userService: UserService,
               private storageService: StorageService,
               private fb: FormBuilder,
-              private snack: MatSnackBar) {
+              private snack: MatSnackBar,
+              private router: Router) {
     this.profileForm = fb.group( {
       username: ['', [Validators.required, Validators.minLength(4)]],
       firstName: '',
@@ -59,6 +62,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
+  }
+
+  deleteValidation(value: boolean) {
+    this.validateDelete = value;
   }
 
   hovering(isHovering: boolean) {
@@ -88,6 +95,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteClicked() {
+    // console.log('Delete clicked! ' + this.user.uid);
+    this.userService.delete(this.user.uid)
+      .then(() => {
+        this.router.navigateByUrl('/news-list');
+        this.snack.open('User was deleted!', '', {
+          duration: 3000,
+          panelClass: ('snack-color-warn')
+        });
+        })
+      .catch(err => {
+        this.snack.open('Something went wrong, please try logging in again', null, {
+          duration: 4000,
+          panelClass: ('snack-color-failure')
+    });
+    });
+
+  }
+
 
   unchanged(): boolean {
     const model = this.profileForm.value as User;
@@ -114,5 +140,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       });
       });
   }
+
+
 
 }

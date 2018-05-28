@@ -45,14 +45,37 @@
                  placeholder="Last Name"
                  formControlName="lastName">
         </mat-form-field>
-        <div fxLayout="row" fxLayoutAlign="stretch">
 
-        <button mat-raised-button
+        <div fxLayout="row" fxLayoutAlign="stretch">
+          <div *ngIf="!validateDelete">
+            <button mat-raised-button
+                    color="warn"
+                    type="button"
+                    (click)="deleteValidation(true)">
+              Delete
+            </button>
+          </div>
+          <div *ngIf="validateDelete">
+            <button mat-raised-button
+                    color="primary"
+                    type="button"
+                    (click)="deleteValidation(false)">
+              No don't delete
+            </button>
+            <button mat-raised-button
+                    color="warn"
+                    type="button"
+                    (click)="deleteClicked()">
+              Yes Delete
+            </button>
+          </div>
+          <p fxFlex></p>
+          <button mat-raised-button
                 color="primary"
                 type="submit"
                 [disabled]="profileForm.invalid || unchanged()">
-          Save
-        </button>
+            Save
+          </button>
         </div>
       </form>
     </mat-card-content>

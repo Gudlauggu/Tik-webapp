@@ -7,13 +7,15 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import 'rxjs/add/operator/first';
 import { EmptyObservable} from 'rxjs/observable/EmptyObservable';
 import { StorageService } from '../../shared/storage/storage.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class UserService {
 
   constructor(private authService: AuthService,
               private storageService: StorageService,
-              private afs: AngularFirestore) { }
+              private afs: AngularFirestore,
+              private fireAuth: AngularFireAuth) { }
 
   getUser(): Observable<User> {
     return this.authService.getAuthUser()
@@ -53,5 +55,13 @@ export class UserService {
 
   update(user: User): Promise<any> {
     return this.afs.doc('users/' + user.uid).set(user);
+  }
+
+  delete(user: String): Promise<any>  {
+    return this.fireAuth.auth
+      .currentUser.delete().then(() => {
+      console.log('User Deleted');
+      this.afs.doc('users/' + user).delete();
+    });
   }
 }
