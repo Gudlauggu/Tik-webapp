@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/news-list');
         this.snack.open('User was deleted!', '', {
           duration: 3000,
-          panelClass: ('snack-color-warn')
+          panelClass: ('snack-color-success')
         });
         })
       .catch(err => {
