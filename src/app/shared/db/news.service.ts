@@ -14,7 +14,9 @@ export class NewsService {
 
 
   getNews(): Observable<any> {
-    return this.afs.collection<News>('news')
+    const newsRef = this.afs.collection<News>('news', ref =>
+      ref.orderBy('created', 'desc'));
+    return newsRef
       .snapshotChanges()
       .map(actions => {
         return actions.map(a => {
@@ -25,9 +27,8 @@ export class NewsService {
       });
   }
 
-
   getNewsByCategory(categoryId: string): Observable<any> {
-    return this.afs.collection<News>('news', ref => ref
+    return this.afs.collection<News>('news', ref => ref.orderBy('created', 'desc')
           .where('categoryUid', '==', categoryId))
       .valueChanges();
   }

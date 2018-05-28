@@ -12,7 +12,9 @@ export class CategoryService {
   }
 
   getCategories(): Observable<any> {
-    return this.afs.collection<Category>('categories')
+    const categoryRef = this.afs.collection<Category>('categories', ref =>
+      ref.orderBy('name'));
+    return categoryRef
       .snapshotChanges()
       .map(actions => {
         return actions.map(a => {
