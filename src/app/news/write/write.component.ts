@@ -8,6 +8,7 @@ import { News } from '../shared/news';
 import { NewsService } from '../../shared/db/news.service';
 import { StorageService } from '../../shared/storage/storage.service';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tik-write',
@@ -28,7 +29,8 @@ export class WriteComponent implements OnInit {
                private userService: UserService,
                private newsService: NewsService,
                private storageService: StorageService,
-               private snack: MatSnackBar) {
+               private snack: MatSnackBar,
+               private router: Router) {
     this.writeForm = fb.group({
       displayName: ['', [Validators.required, Validators.minLength(4)]],
       text: '',
@@ -73,9 +75,6 @@ export class WriteComponent implements OnInit {
   }
 
 
-  onFileSelected(event) {
-    console.log(event);
-  }
 
   saveClicked() {
     const writeModel = this.writeForm.value;
@@ -91,16 +90,11 @@ export class WriteComponent implements OnInit {
       created: new Date().toLocaleDateString('en-GB'),
     } as News;
     this.newsService.saveNews(data);
-
-
-
-    console.log('save button clicked');
-   // console.log('you selected: ' + this.user.uid);
-    console.log('you selected: ' + this.img);
-   // console.log('you selected: ' + this.user.firstName);
-   // console.log('you selected: ' + this.user.middleName);
-   // console.log('you selected: ' + this.user.lastName);
-   // console.log('you selected: ' + new Date().toLocaleDateString('en-GB'));
+    this.router.navigateByUrl('/news-list');
+    this.snack.open('News: ' + writeModel.displayName + ' was created', '', {
+      duration: 4000,
+      panelClass: ('snack-color-success')
+    });
   }
 
 }
