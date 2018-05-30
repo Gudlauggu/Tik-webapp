@@ -25,7 +25,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   categoryClicked(category) {
-     this.router.navigateByUrl('/category-detail/' + category.id);
+     this.router.navigateByUrl('/category-detail/' + category.uid);
   }
 
 }

@@ -34,9 +34,9 @@
         <mat-form-field>
         <mat-select placeholder="Category" [(value)]="selectedCatId">
           <mat-option *ngFor="let category of categories"
-                      [value]="category.data.uid"
+                      [value]="category.uid"
                       >
-            {{ category.data.name }}
+            {{ category.name }}
           </mat-option>
         </mat-select>
         </mat-form-field>
