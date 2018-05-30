@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userSub = this.userService.getUserWithProfileUrl()
       .subscribe(user => {
         this.user = user;
-        if (this.user && this.user.img) {
+        if (this.user.img) {
           this.img = user.profileImgUrl;
         } else {
           this.img = '/assets/face.svg';
@@ -126,7 +126,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   save() {
     const model = this.profileForm.value as User;
     model.uid = this.user.uid;
-    model.img = this.user.img;
+    if (!this.user.img) {
+      model.img = false;
+    } else {
+      model.img = this.user.img;
+    }
     this.userService.update(model)
       .then( () => {
         this.snack.open('User Saved', null, {

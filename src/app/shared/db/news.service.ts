@@ -15,10 +15,10 @@ export class NewsService {
     let newsRef;
     if (this.latest) {
        newsRef = this.afs.collection<News>('news', ref =>
-        ref.orderBy('created', 'desc').limit(4).startAfter(this.latest));
+        ref.orderBy('created', 'desc').limit(3).startAfter(this.latest));
     } else {
        newsRef = this.afs.collection<News>('news', ref =>
-        ref.orderBy('created', 'desc').limit(4));
+        ref.orderBy('created', 'desc').limit(3));
     }
     return newsRef
       .snapshotChanges()
