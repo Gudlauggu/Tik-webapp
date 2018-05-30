@@ -18,7 +18,7 @@ export class NewsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newsService.getNews()
+    this.newsService.getNews().first()
       .subscribe(news => {
         this.news = news;
         // console.log(this.news);
@@ -28,5 +28,14 @@ export class NewsListComponent implements OnInit {
   thisNewsClicked(newsId) {
     // console.log(newsId);
     this.router.navigateByUrl('/news/' + newsId);
+  }
+
+  moreClicked() {
+    this.newsService.getNews().first()
+      .subscribe(news => {
+        news.forEach(newss => {
+          this.news.push(newss);
+        });
+    });
   }
 }

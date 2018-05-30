@@ -2,27 +2,33 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { News } from '../../news/shared/news';
 import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { CategoryService } from './category.service';
-import { StorageService } from '../storage/storage.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import DocumentSnapshot = firebase.firestore.DocumentSnapshot;
 
 @Injectable()
 export class NewsService {
-
+  latest: DocumentSnapshot;
   constructor(private afs: AngularFirestore) { }
 
 
-  getNews(): Observable<any> {
-    const newsRef = this.afs.collection<News>('news', ref =>
-      ref.orderBy('created', 'desc'));
+  getNews(): Observable<News[]> {
+    let newsRef;
+    if (this.latest) {
+       newsRef = this.afs.collection<News>('news', ref =>
+        ref.orderBy('created', 'desc').limit(4).startAfter(this.latest));
+    } else {
+       newsRef = this.afs.collection<News>('news', ref =>
+        ref.orderBy('created', 'desc').limit(4));
+    }
     return newsRef
       .snapshotChanges()
       .map(actions => {
+
         return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return {id, data};
+          this.latest = a.payload.doc;
+          const news = a.payload.doc.data() as News;
+          news.uid = a.payload.doc.id;
+          return news;
         });
       });
   }

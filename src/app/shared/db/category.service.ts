@@ -11,16 +11,16 @@ export class CategoryService {
   constructor(private afs: AngularFirestore) {
   }
 
-  getCategories(): Observable<any> {
+  getCategories(): Observable<Category[]> {
     const categoryRef = this.afs.collection<Category>('categories', ref =>
       ref.orderBy('name'));
     return categoryRef
       .snapshotChanges()
       .map(actions => {
         return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return {id, data};
+          const category = a.payload.doc.data() as Category;
+          category.uid = a.payload.doc.id;
+          return category;
       });
     });
   }

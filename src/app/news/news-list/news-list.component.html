@@ -3,27 +3,35 @@
   <mat-card fxFlex="60"
             *ngIf="news">
 <div *ngFor="let newss of news"
-     (click)="thisNewsClicked(newss.data.uid)">
+     (click)="thisNewsClicked(newss.uid)">
   <mat-card-content>
     <div>
       <img [style.max-width]="'100%'"
-           [src]='newss.data.imgUrl'>
+           [src]='newss.imgUrl'>
     </div>
     <mat-list dense
               fxFlex="60"
               fxFlexAlign="start"
               fxFlexOffset="1">
-      <mat-list-item>{{newss.data.displayName}}</mat-list-item>
+      <mat-list-item>{{newss.displayName}}</mat-list-item>
       <mat-list-item>Author:
-        {{newss.data.ownerFirstName}} {{newss.data.ownerMiddleName}} {{newss.data.ownerLastName}}</mat-list-item>
-      <mat-list-item>Published: {{newss.data.created}}</mat-list-item>
+        {{newss.ownerFirstName}} {{newss.ownerMiddleName}} {{newss.ownerLastName}}</mat-list-item>
+      <mat-list-item>Published: {{newss.created}}</mat-list-item>
     </mat-list>
   </mat-card-content>
   <mat-divider></mat-divider>
+  <p fxFlex></p>
 </div>
+    <div fxLayoutAlign="center" fxLayout="column">
+      <button mat-raised-button
+              color="primary"
+              type="button"
+              (click)="moreClicked()">
+        <mat-icon>more_horiz</mat-icon>
+        Load more!</button>
+    </div>
   </mat-card>
-
-  <mat-spinner
+<mat-spinner
     *ngIf="!news"
     [diameter]="75">
   </mat-spinner>

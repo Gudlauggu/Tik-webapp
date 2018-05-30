@@ -48,7 +48,7 @@
 
         <div fxLayout="row" fxLayoutAlign="stretch">
           <div *ngIf="!validateDelete">
-            <button mat-raised-button
+            <button mat-button
                     color="warn"
                     type="button"
                     (click)="deleteValidation(true)">
@@ -56,13 +56,13 @@
             </button>
           </div>
           <div *ngIf="validateDelete">
-            <button mat-raised-button
+            <button mat-button
                     color="primary"
                     type="button"
                     (click)="deleteValidation(false)">
               No don't delete
             </button>
-            <button mat-raised-button
+            <button mat-button
                     color="warn"
                     type="button"
                     (click)="deleteClicked()">
